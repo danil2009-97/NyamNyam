@@ -8,21 +8,45 @@ public class Recipe {
     private String name;
     private String description;
     private String imageSource;
-    private boolean isAvailable;
-    private List<Product> products;
 
+    private List<Product> products;
+    private int difficulty;
+    private String guide;
+    private boolean isFavourite;
 
     public Recipe() {
     }
 
-    public Recipe(int id, String name, String description, String imageSource, boolean isAvailable, List<Product> products) {
+    public Recipe(int id, String name, String description, String imageSource,  List<Product> products,
+                  int difficulty, String guide, boolean isFavourite) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageSource = imageSource;
-        this.isAvailable = isAvailable;
+        this.difficulty = difficulty;
+        this.guide = guide;
+        this.isFavourite = isFavourite;
         this.products = products;
     }
+
+    public String getGuide() {
+        return guide;
+    }
+
+    public void setGuide(String guide) {
+        this.guide = guide;
+    }
+
+    public boolean getFavourite() { return isFavourite; }
+
+    public void setFavourite(boolean isFavourite) { this.isFavourite = isFavourite; }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;}
 
     public int getId() {
         return id;
@@ -55,10 +79,6 @@ public class Recipe {
     public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
     }
-
-    public boolean getAvailable() { return isAvailable; }
-
-    public void setAvailable(boolean isAvailable) { this.isAvailable = isAvailable; }
 
     public List<Product> getProducts() { return products; }
 
