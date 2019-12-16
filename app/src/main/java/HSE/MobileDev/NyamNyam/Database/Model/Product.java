@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Product {
     private int id;
-    private int name;
+    private String name;
     private String imageSource;
     private boolean isAvailable;
 
     public Product() {
     }
 
-    public Product(int id, int name,String imageSource,boolean isAvailable ) {
+    public Product(int id, String name,String imageSource,boolean isAvailable ) {
         this.id = id;
         this.name = name;
         this.imageSource = imageSource;
@@ -30,11 +30,11 @@ public class Product {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

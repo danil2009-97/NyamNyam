@@ -10,16 +10,18 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import HSE.MobileDev.NyamNyam.Database.Model.Product;
 import HSE.MobileDev.NyamNyam.R;
 
 public class ProductsAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final Product[] products;
+    private List<Product> products;
 
     // 1
-    public ProductsAdapter(Context context, Product[] products) {
+    public ProductsAdapter(Context context, List<Product> products) {
         this.mContext = context;
         this.products = products;
     }
@@ -27,7 +29,7 @@ public class ProductsAdapter extends BaseAdapter {
     // 2
     @Override
     public int getCount() {
-        return products.length;
+        return products.size();
     }
 
     // 3
@@ -45,7 +47,7 @@ public class ProductsAdapter extends BaseAdapter {
     // 5
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Product product = products[position];
+        final Product product = products.get(position);
 
         // view holder pattern
         if (convertView == null) {
@@ -61,7 +63,8 @@ public class ProductsAdapter extends BaseAdapter {
 
         final ViewHolder viewHolder = (ViewHolder)convertView.getTag();
         Picasso.get().load(product.getImageSource()).into(viewHolder.imageViewCoverArt);
-        viewHolder.nameTextView.setText(mContext.getString(product.getName()));
+        viewHolder.nameTextView.setText(product.getName());
+
         return convertView;
     }
 
