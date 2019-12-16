@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageview_product"
+            android:id="@+id/imageViewCoverArt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"/>
@@ -24,7 +24,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/textview_product_name"
+        android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"

@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import HSE.MobileDev.NyamNyam.Database.Model.Product;
@@ -54,15 +52,17 @@ public class ProductsAdapter extends BaseAdapter {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.linearlayout_product, null);
 
-            final ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.imageview_product);
-            final TextView nameTextView = (TextView)convertView.findViewById(R.id.textview_product_name);
+            final ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.imageViewCoverArt);
+            final TextView nameTextView = (TextView)convertView.findViewById(R.id.nameTextView);
 
             final ViewHolder viewHolder = new ViewHolder(nameTextView, imageViewCoverArt);
             convertView.setTag(viewHolder);
+
         }
 
         final ViewHolder viewHolder = (ViewHolder)convertView.getTag();
-        Picasso.get().load(product.getImageSource()).into(viewHolder.imageViewCoverArt);
+        viewHolder.imageViewCoverArt.setImageResource(product.getImageResource());
+        //Picasso.get().load(product.getImageResource()).into(viewHolder.imageViewCoverArt);
         viewHolder.nameTextView.setText(product.getName());
 
         return convertView;

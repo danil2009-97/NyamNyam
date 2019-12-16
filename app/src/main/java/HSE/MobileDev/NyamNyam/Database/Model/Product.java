@@ -5,16 +5,14 @@ import java.util.List;
 public class Product {
     private int id;
     private String name;
-    private String imageSource;
+    private final int imageResource;
     private boolean isAvailable;
 
-    public Product() {
-    }
 
-    public Product(int id, String name,String imageSource,boolean isAvailable ) {
+    public Product(int id, String name,int imageResource,boolean isAvailable ) {
         this.id = id;
         this.name = name;
-        this.imageSource = imageSource;
+        this.imageResource = imageResource;
         this.isAvailable = isAvailable;
     }
 
@@ -38,13 +36,13 @@ public class Product {
         this.name = name;
     }
 
-    public String getImageSource() {
-        return imageSource;
+    public int getImageResource() {
+        return imageResource;
     }
 
-    public void setImageSource(String imageSource) {
+   /* public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
-    }
+    }*/
 
 
 }
