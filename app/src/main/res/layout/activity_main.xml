@@ -5,15 +5,49 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp" tools:context=".Views.MainActivity">
 
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/gridview"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/buttonFav"
+        android:layout_toEndOf="@+id/buttonRefreg"
+        android:background="@drawable/roundedbutton" />
+
+    <Button
+        android:id="@+id/buttonFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/gridview"
+        android:layout_alignBottom="@+id/gridview"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:text="Избранное" />
+
+    <Button
+        android:id="@+id/buttonRefreg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/gridview"
+        android:layout_alignBottom="@+id/gridview"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:text="Холодильник" />
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:columnWidth="100dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="24dp"
+        android:gravity="center"
         android:horizontalSpacing="14.5dp"
+        android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        />
+        android:verticalSpacing="24dp" >
+
+    </GridView>
+
 </RelativeLayout>
