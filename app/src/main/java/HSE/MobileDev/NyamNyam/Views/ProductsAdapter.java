@@ -62,7 +62,6 @@ public class ProductsAdapter extends BaseAdapter {
 
         final ViewHolder viewHolder = (ViewHolder)convertView.getTag();
         viewHolder.imageViewCoverArt.setImageResource(product.getImageResource());
-        //Picasso.get().load(product.getImageResource()).into(viewHolder.imageViewCoverArt);
         viewHolder.nameTextView.setText(product.getName());
 
         return convertView;

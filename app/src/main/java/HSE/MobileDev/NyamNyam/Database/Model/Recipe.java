@@ -7,17 +7,14 @@ public class Recipe {
     private int id;
     private String name;
     private String description;
-    private String imageSource;
+    private final int imageSource;
 
     private List<Product> products;
     private int difficulty;
     private String guide;
     private boolean isFavourite;
 
-    public Recipe() {
-    }
-
-    public Recipe(int id, String name, String description, String imageSource,  List<Product> products,
+    public Recipe(int id, String name, String description, int imageSource,  List<Product> products,
                   int difficulty, String guide, boolean isFavourite) {
         this.id = id;
         this.name = name;
@@ -72,12 +69,8 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getImageSource() {
+    public int getImageSource() {
         return imageSource;
-    }
-
-    public void setImageSource(String imageSource) {
-        this.imageSource = imageSource;
     }
 
     public List<Product> getProducts() { return products; }

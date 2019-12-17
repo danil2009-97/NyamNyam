@@ -40,9 +40,4 @@ public class Product {
         return imageResource;
     }
 
-   /* public void setImageSource(String imageSource) {
-        this.imageSource = imageSource;
-    }*/
-
-
 }

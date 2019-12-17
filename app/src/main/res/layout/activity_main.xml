@@ -5,7 +5,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:paddingBottom="16dp" tools:context=".Views.MainActivity">
+    android:paddingBottom="16dp" tools:context=".MainActivity">
 
     <Button
         android:id="@+id/buttonStart"
@@ -17,7 +17,8 @@
         android:layout_marginBottom="0dp"
         android:layout_toStartOf="@+id/buttonFav"
         android:layout_toEndOf="@+id/buttonRefreg"
-        android:background="@drawable/roundedbutton" />
+        android:background="@drawable/roundedbutton"
+        android:onClick="openRecipe"/>
 
     <Button
         android:id="@+id/buttonFav"
