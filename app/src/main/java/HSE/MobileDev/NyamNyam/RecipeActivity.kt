@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import HSE.MobileDev.NyamNyam.Database.Model.Recipe
 import android.view.View
 
-class FridgeActivity : AppCompatActivity() {
+class RecipeActivity : AppCompatActivity() {
 
     private val testRecipe = Recipe(0, "Сэндвич", "тест", R.drawable.shutterstock_525130276, null, 4,
             "Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar.",
@@ -35,4 +35,7 @@ class FridgeActivity : AppCompatActivity() {
         recipeTextView.text = testRecipe.guide
     }
 
+    fun closeActivity(view: View) {
+        super.onBackPressed()
+    }
 }

@@ -6,15 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.GridView
-import android.widget.ImageView
-import android.widget.TextView
 
 import java.util.ArrayList
 import java.util.Arrays
 
 import HSE.MobileDev.NyamNyam.Database.Model.Product
 import HSE.MobileDev.NyamNyam.Database.Model.Recipe
-import HSE.MobileDev.NyamNyam.R
 import HSE.MobileDev.NyamNyam.Views.ProductsAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +21,14 @@ class MainActivity : AppCompatActivity() {
                     Product(0, "Bread", R.drawable.bread,
                             true),
                     Product(1, "Banana", R.drawable.banana,
+                            true),
+                    Product(2, "Sausage", R.drawable.sausage,
+                    true),
+                    Product(2, "Sausage", R.drawable.sausage,
+                            true),
+                    Product(2, "Sausage", R.drawable.sausage,
+                            true),
+                    Product(2, "Sausage", R.drawable.sausage,
                             true),
                     Product(2, "Sausage", R.drawable.sausage,
                             true)
@@ -44,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openRecipe(view: View) {
-        val recipeIntent = Intent(this, FridgeActivity::class.java)
+        val recipeIntent = Intent(this, RecipeActivity::class.java)
 
         startActivity(recipeIntent)
     }
