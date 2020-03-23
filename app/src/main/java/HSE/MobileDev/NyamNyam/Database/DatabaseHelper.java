@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.nfc.Tag;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,8 +116,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // insert row
         long id = db.insert(TABLE_PRODUCT, null, values);
         //ТУТ МНОГО КО МНОГИМ
-        for (long tag_id : tag_ids) {
-            createTodoTag(todo_id, tag_id);
+        for (long tag_id : products_ids) {
+            createProductRecipe(id, tag_id);
         }
         // close db connection
         db.close();
@@ -172,22 +174,97 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return products;
     }
 
-    public int updateNote(Note note) {
+    public int updateProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Note.COLUMN_NOTE, note.getNote());
+        values.put(COLUMN_PRODUCT_NAME, product.getName());
+        values.put(COLUMN_PRODUCT_IMAGESOURCE, product.getImageSource());
+        values.put(COLUMN_ISAVAILABLE, product.getIsAvailable());
 
         // updating row
-        return db.update(Note.TABLE_NAME, values, Note.COLUMN_ID + " = ?",
-                new String[]{String.valueOf(note.getId())});
+        return db.update(TABLE_PRODUCT, values, COLUMN_PRODUCT_ID + " = ?",
+                new String[]{String.valueOf(product.getId())});
     }
 
-    public void deleteNote(Note note) {
+    public void deleteProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Note.TABLE_NAME, Note.COLUMN_ID + " = ?",
-                new String[]{String.valueOf(note.getId())});
+        db.delete(TABLE_PRODUCT, COLUMN_PRODUCT_ID + " = ?",
+                new String[]{String.valueOf(product.getId())});
         db.close();
+    }
+
+    public long createRecipe(Recipe recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RECIPE_NAME, recipe.getName());
+        values.put(COLUMN_RECIPE_IMAGESOURCE, recipe.getImageSource());
+        values.put(COLUMN_DIFFICULTY, recipe.getDifficulty());
+        values.put(COLUMN_DESCRIPTION, recipe.getDescription());
+        values.put(COLUMN_GUIDE, recipe.getGuide());
+
+        // insert row
+        long tag_id = db.insert(TABLE_RECIPE, null, values);
+
+        return tag_id;
+    }
+
+    public List<Recipe> getAllRecipes() {
+        List<Recipe> recipes = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_RECIPE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Recipe recipe = new Recipe();
+                recipe.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_RECIPE_ID)));
+                recipe.setName(cursor.getString(cursor.getColumnIndex(COLUMN_RECIPE_NAME)));
+                recipe.setImageSource(cursor.getString(cursor.getColumnIndex(COLUMN_RECIPE_IMAGESOURCE)));
+                recipe.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+                recipe.setDifficulty(cursor.getInt(cursor.getColumnIndex(COLUMN_DIFFICULTY)));
+                recipe.setGuide(cursor.getString(cursor.getColumnIndex(COLUMN_GUIDE)));
+
+                recipes.add(recipe);
+            } while (cursor.moveToNext());
+        }
+        // close db connection
+        db.close();
+        // return notes list
+        return recipes;
+    }
+
+    public int updateRecipe(Recipe recipe) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RECIPE_NAME, recipe.getName());
+        values.put(COLUMN_RECIPE_IMAGESOURCE, recipe.getImageSource());
+        values.put(COLUMN_DESCRIPTION, recipe.getDescription());
+        values.put(COLUMN_DIFFICULTY, recipe.getDifficulty());
+        values.put(COLUMN_GUIDE, recipe.getGuide());
+
+        // updating row
+        return db.update(TABLE_RECIPE, values, COLUMN_RECIPE_ID + " = ?",
+                new String[]{String.valueOf(recipe.getId())});
+    }
+
+    public long createProductRecipe(long product_id, long recipe_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PRODUCT_ID, product_id);
+        values.put(COLUMN_RECIPE_ID, recipe_id);
+        // values.put(KEY_CREATED_AT, getDateTime());
+
+        long id = db.insert(TABLE_PRODUCT_RECIPE, null, values);
+
+        return id;
     }
 }
 

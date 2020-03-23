@@ -1,5 +1,6 @@
 package HSE.MobileDev.NyamNyam
 
+import HSE.MobileDev.NyamNyam.Database.Model.AppDatabase
 import androidx.appcompat.app.AppCompatActivity
 
 import android.content.Intent
@@ -13,6 +14,7 @@ import java.util.Arrays
 import HSE.MobileDev.NyamNyam.Database.Model.Product
 import HSE.MobileDev.NyamNyam.Database.Model.Recipe
 import HSE.MobileDev.NyamNyam.Views.ProductsAdapter
+import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 

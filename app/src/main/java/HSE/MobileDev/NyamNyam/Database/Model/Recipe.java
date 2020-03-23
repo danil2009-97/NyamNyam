@@ -39,6 +39,10 @@ public class Recipe {
 
     public void setImageSource(String imageSource) { this.imageSource = imageSource; }
 
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) {this.description = description; }
+
     public int getDifficulty() { return difficulty; }
 
     public void setDifficulty(int difficulty) {this.difficulty = difficulty; }
