@@ -114,7 +114,7 @@ class RecipeActivity : AppCompatActivity() {
         }
     }
 
-    fun closeActivity(view: View) {
+    fun closeRecipeActivity(view: View) {
         super.onBackPressed()
     }
 }

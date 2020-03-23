@@ -33,7 +33,7 @@
         android:layout_height="55dp"
         android:background="@drawable/home"
         android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:onClick="closeActivity"
+        android:onClick="closeRecipeActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
 
