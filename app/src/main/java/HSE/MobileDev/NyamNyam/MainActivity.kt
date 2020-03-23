@@ -1,6 +1,5 @@
 package HSE.MobileDev.NyamNyam
 
-import HSE.MobileDev.NyamNyam.Database.Model.AppDatabase
 import androidx.appcompat.app.AppCompatActivity
 
 import android.content.Intent
@@ -20,26 +19,22 @@ class MainActivity : AppCompatActivity() {
 
     private val products = ArrayList(
             Arrays.asList(
-                    Product(0, "Bread", R.drawable.bread,
-                            true),
-                    Product(1, "Banana", R.drawable.banana,
-                            true),
-                    Product(2, "Sausage", R.drawable.sausage,
-                    true),
-                    Product(2, "Sausage", R.drawable.sausage,
-                            true),
-                    Product(2, "Sausage", R.drawable.sausage,
-                            true),
-                    Product(2, "Sausage", R.drawable.sausage,
-                            true),
-                    Product(2, "Sausage", R.drawable.sausage,
-                            true)
-
+                    Product(0, "Bread", "bread",
+                            1),
+                    Product(1, "Banana", "banana",
+                            1),
+                    Product(2, "Sausage", "sausage",
+                    1),
+                    Product(2, "Sausage", "sausage",
+                            1),
+                    Product(2, "Sausage", "sausage",
+                            1),
+                    Product(2, "Sausage", "sausage",
+                            1),
+                    Product(2, "Sausage", "sausage",
+                            1)
             ))
 
-    private val testRecipe = Recipe(0, "Сэндвич", "тест", R.drawable.shutterstock_525130276, null, 4,
-            "description",
-            false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

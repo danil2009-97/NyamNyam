@@ -1,5 +1,6 @@
 package HSE.MobileDev.NyamNyam.Views
 
+import HSE.MobileDev.NyamNyam.App
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import java.util.*
+
 
 import HSE.MobileDev.NyamNyam.Database.Model.Product
 import HSE.MobileDev.NyamNyam.R
@@ -47,8 +50,14 @@ class ProductsAdapter// 1
 
         }
 
+
+
         val viewHolder = convertView.tag as ViewHolder
-        viewHolder.imageViewCoverArt.setImageResource(product.imageResource)
+        val uri = "@drawable/" + product.imageSource
+
+        var imageResource = App.getResource()?.getIdentifier(uri, null, "HSE.MobileDev.NyamNyam")
+        if (imageResource == null) imageResource = 0
+        viewHolder.imageViewCoverArt.setImageResource(imageResource)
         viewHolder.nameTextView.text = product.name
 
         return convertView

@@ -12,6 +12,12 @@ import android.os.PersistableBundle
 import android.view.View
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class RecipeActivity : AppCompatActivity() {
 
@@ -47,8 +53,8 @@ class RecipeActivity : AppCompatActivity() {
     }
 
     private fun getInitialRecipe () : Recipe{
-        val emptyRecipe = Recipe(-1, "Нет доступных рецептов!", "Упс...",
-                R.drawable.sad, null, 0,"Добавьте продукты в Ваш холодильник", false)
+        val emptyRecipe = Recipe(-1, "Нет доступных рецептов!",
+                "sad", "test", 0,"Добавьте продукты в Ваш холодильник")
 
         if (listSize > 0){
             if (currentIndex>-1){
@@ -67,11 +73,10 @@ class RecipeActivity : AppCompatActivity() {
     private fun getRecipeList(){
         // request from db
         recipeList.addAll(Arrays.asList(
-                Recipe(0, "Сэндвич", "тест", R.drawable.shutterstock_525130276, null, 4,
-                        "Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar.",
-                        false),
-                Recipe(1, "Второй сэндвич с длинным названием", "тест", R.drawable.sausage, null, 3,
-                        "quite short text", false)
+                Recipe(0, "Сэндвич", "shutterstock_525130276", null, 4,
+                        "Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar."),
+                Recipe(1, "Второй сэндвич с длинным названием", "sausage", null, 3,
+                        "quite short text")
         ))
 
         listSize = recipeList.size
@@ -87,7 +92,9 @@ class RecipeActivity : AppCompatActivity() {
 
         val difficulty = String.format("Сложность: %1\$d/5", recipe.difficulty)
 
-        mealImageView.setImageResource(recipe.imageSource)
+        val uri = "@drawable/" + recipe.imageSource
+        val imageSource = resources.getIdentifier(uri, null, packageName)
+        mealImageView.setImageResource(imageSource)
         productTitleTextView.text = recipe.name
         difficultyTitleTextView.setText(difficulty)
         recipeTextView.text = recipe.guide
