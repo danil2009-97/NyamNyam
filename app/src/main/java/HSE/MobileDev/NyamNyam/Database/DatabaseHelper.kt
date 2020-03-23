@@ -7,6 +7,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     // Creating Tables
@@ -28,7 +29,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     // PRODUCT METHODS
-    fun createProduct(product: Product, products_ids: LongArray): Long {
+    fun createProduct(product: Product, recipe_ids: LongArray): Long {
         // get writable database as we want to write data
         val db = this.writableDatabase
         val values = ContentValues()
@@ -40,8 +41,8 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         // insert row
         val id = db.insert(TABLE_PRODUCT, null, values)
         //ТУТ МНОГО КО МНОГИМ
-        for (tag_id in products_ids) {
-            createProductRecipe(id, tag_id)
+        for (recipe_id in recipe_ids) {
+            createProductRecipe(id, recipe_id)
         }
         // close db connection
         db.close()
@@ -69,12 +70,12 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     // Select All Query
-    val allProducts: List<Product>
+    val allProducts: ArrayList<Product>
         get() {
-            val products: MutableList<Product> = ArrayList()
+            val products: ArrayList<Product> = ArrayList()
 
             // Select All Query
-            val selectQuery = "SELECT  * FROM $TABLE_PRODUCT"
+            val selectQuery = "SELECT  * FROM $TABLE_PRODUCT WHERE $COLUMN_ISAVAILABLE = 1"
             val db = this.writableDatabase
             val cursor = db.rawQuery(selectQuery, null)
 

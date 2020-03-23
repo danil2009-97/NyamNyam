@@ -30,7 +30,7 @@ class ProductsActivity : AppCompatActivity(){
 
         noProductsView = findViewById<TextView>(R.id.empty_products_view) as TextView
 
-        //productsList = getProductsList()
+        productsList = getProductsList()
         toggleEmptyProducts()
 
         recyclerView = findViewById<View>(R.id.recycler_products) as RecyclerView
