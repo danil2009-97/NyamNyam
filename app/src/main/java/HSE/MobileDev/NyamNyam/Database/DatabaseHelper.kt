@@ -171,8 +171,8 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
     fun createProductRecipe(product_id: Long, recipe_id: Long): Long {
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(COLUMN_PRODUCT_ID, product_id)
-        values.put(COLUMN_RECIPE_ID, recipe_id)
+        values.put(COLUMN_PR_PRODUCT_ID, product_id)
+        values.put(COLUMN_PR_RECIPE_ID, recipe_id)
         // values.put(KEY_CREATED_AT, getDateTime());
         return db.insert(TABLE_PRODUCT_RECIPE, null, values)
     }

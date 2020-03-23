@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         val product = Product(0, "Bread", "bread",
                 1);
         val product_1: Long = db!!.createProduct(product, longArrayOf(1))
-        db!!.createProductRecipe(1,1);
+//        db!!.createProductRecipe(1,1);
 
         val gridView = findViewById<View>(R.id.gridview) as GridView
         val productsAdapter = ProductsAdapter(this, products)
