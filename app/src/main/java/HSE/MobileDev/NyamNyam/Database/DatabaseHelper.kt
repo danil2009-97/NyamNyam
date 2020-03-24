@@ -75,6 +75,33 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
             val products: ArrayList<Product> = ArrayList()
 
             // Select All Query
+            val selectQuery = "SELECT  * FROM $TABLE_PRODUCT WHERE $COLUMN_ISAVAILABLE = 0"
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    val product = Product()
+                    product.id = cursor.getInt(cursor.getColumnIndex(COLUMN_PRODUCT_ID))
+                    product.name = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME))
+                    product.imageSource = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_IMAGESOURCE))
+                    product.isAvailable = cursor.getInt(cursor.getColumnIndex(COLUMN_ISAVAILABLE))
+                    products.add(product)
+                } while (cursor.moveToNext())
+            }
+            // close db connection
+            db.close()
+            // return notes list
+            return products
+        }
+
+
+    val allProductsAvailable: ArrayList<Product>
+        get() {
+            val products: ArrayList<Product> = ArrayList()
+
+            // Select All Query
             val selectQuery = "SELECT  * FROM $TABLE_PRODUCT WHERE $COLUMN_ISAVAILABLE = 1"
             val db = this.writableDatabase
             val cursor = db.rawQuery(selectQuery, null)

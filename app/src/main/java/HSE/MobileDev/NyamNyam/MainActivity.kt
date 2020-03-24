@@ -3,18 +3,16 @@ package HSE.MobileDev.NyamNyam
 import HSE.MobileDev.NyamNyam.Database.DatabaseHelper
 import HSE.MobileDev.NyamNyam.Database.Model.Product
 import HSE.MobileDev.NyamNyam.Database.Model.Recipe
-import HSE.MobileDev.NyamNyam.Views.ProductSimpleAdapter
 import HSE.MobileDev.NyamNyam.Views.ProductsAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Note
 import android.view.View
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.GridView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -86,6 +84,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deleteProductFromFridge(position: Int){
+
+        val p: Product = productList[position]
+        p.isAvailable = 0
+        db!!.updateProduct(p)
+        // по инту входному получаю индекс в массиве, по нему беру его id
+        //по id проапдейтить available = 0
         products.removeAt(position)
     }
 

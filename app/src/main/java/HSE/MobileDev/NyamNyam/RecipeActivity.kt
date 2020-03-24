@@ -72,6 +72,7 @@ class RecipeActivity : AppCompatActivity() {
 
     private fun getRecipeList(){
         // request from db
+        // = запрос из базы трудный, который показывает рецепты, для которых есть все продукты (isav = 1)
         recipeList.addAll(Arrays.asList(
                 Recipe(0, "Сэндвич", "shutterstock_525130276", null, 4,
                         "Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar."),
@@ -82,7 +83,6 @@ class RecipeActivity : AppCompatActivity() {
         listSize = recipeList.size
 
     }
-
 
     protected fun fillWindow(recipe:Recipe) {
         val productTitleTextView = findViewById<View>(R.id.productTitleTextView) as TextView
