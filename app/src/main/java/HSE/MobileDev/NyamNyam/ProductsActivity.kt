@@ -114,5 +114,6 @@ class ProductsActivity : AppCompatActivity(){
 
     fun closeProductsActivity(view: View) {
         super.onBackPressed()
+
     }
 }

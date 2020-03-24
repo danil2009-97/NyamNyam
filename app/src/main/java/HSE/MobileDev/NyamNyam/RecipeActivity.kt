@@ -1,5 +1,6 @@
 package HSE.MobileDev.NyamNyam
 
+import HSE.MobileDev.NyamNyam.Database.DatabaseHelper
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,11 +25,13 @@ class RecipeActivity : AppCompatActivity() {
     private var currentIndex:Int = -1;
     private var listSize:Int = -1;
     private var recipeList = ArrayList<Recipe>()
+    var db: DatabaseHelper? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val lastInd = savedInstanceState?.getInt("Index")
+        db = DatabaseHelper(this)
 
         if (lastInd != null) {
             currentIndex = lastInd
@@ -73,12 +76,7 @@ class RecipeActivity : AppCompatActivity() {
     private fun getRecipeList(){
         // request from db
         // = запрос из базы трудный, который показывает рецепты, для которых есть все продукты (isav = 1)
-        recipeList.addAll(Arrays.asList(
-                Recipe(0, "Сэндвич", "shutterstock_525130276", null, 4,
-                        "Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar. Long sample text to test scrollbar."),
-                Recipe(1, "Второй сэндвич с длинным названием", "sausage", null, 3,
-                        "quite short text")
-        ))
+        recipeList.addAll(db!!.allRecipes)
 
         listSize = recipeList.size
 

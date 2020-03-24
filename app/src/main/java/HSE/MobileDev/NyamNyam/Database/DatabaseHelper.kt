@@ -159,7 +159,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
             val recipes: MutableList<Recipe> = ArrayList()
 
             // Select All Query
-            val selectQuery = "SELECT  * FROM $TABLE_RECIPE"
+            val selectQuery = "SELECT * FROM $TABLE_RECIPE where not EXISTS (select * from $TABLE_PRODUCT_RECIPE INNER JOIN $TABLE_PRODUCT ON $TABLE_PRODUCT_RECIPE.$COLUMN_PR_PRODUCT_ID = $TABLE_PRODUCT.$COLUMN_PRODUCT_ID where $TABLE_RECIPE.$COLUMN_RECIPE_ID = $TABLE_PRODUCT_RECIPE.$COLUMN_PR_RECIPE_ID and $TABLE_PRODUCT.$COLUMN_ISAVAILABLE = 0)"
             val db = this.writableDatabase
             val cursor = db.rawQuery(selectQuery, null)
 
